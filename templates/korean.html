@@ -4,25 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>한식</title>
-  <link rel="stylesheet" href=" {{ url_for('static', filename='foodSelectStyles.css') }}">
+  <link rel="stylesheet" href=" {{ url_for('static', filename='foodSelect.css') }}">
 </head>
 <body>
   <div class="container">
     <h2 class="title">한식</h2>
     <div class="food-list">
-      <a href="{{ url_for('recipe_page')}}">비빔밥</a>
-      <a href="{{ url_for('recipe_page')}}">김치</a>
-      <a href="{{ url_for('recipe_page')}}">불고기</a>
-      <a href="{{ url_for('recipe_page')}}">잡채</a>
-      <a href="{{ url_for('recipe_page')}}">김치찌개</a>
-      <a href="{{ url_for('recipe_page')}}">떡볶이</a>
-      <a href="{{ url_for('recipe_page')}}">된장찌게</a>
-      <a href="{{ url_for('recipe_page')}}">청국장</a>
-      <a href="{{ url_for('recipe_page')}}">김밥</a>
-      <a href="{{ url_for('recipe_page')}}">김치전</a>
+      <a href="{{ url_for('gpt_page')}}">비빔밥</a>
+      <a href="{{ url_for('gpt_page')}}">김치</a>
+      <a href="{{ url_for('gpt_page')}}">불고기</a>
+      <a href="{{ url_for('gpt_page')}}">잡채</a>
+      <a href="{{ url_for('gpt_page')}}">김치찌개</a>
+      <a href="{{ url_for('gpt_page')}}">떡볶이</a>
+      <a href="{{ url_for('gpt_page')}}">된장찌게</a>
+      <a href="{{ url_for('gpt_page')}}">청국장</a>
+      <a href="{{ url_for('gpt_page')}}">김밥</a>
+      <a href="{{ url_for('gpt_page')}}">김치전</a>
     </div>
   </div>
   <button class="back-button" onclick="goBack()">뒤로 가기</button>
-  <script src="{{ url_for('static', filename='foodSelectScript.js') }}"></script>
+  <script src="{{ url_for('static', filename='foodSelect.js') }}"></script>
 </body>
 </html>
