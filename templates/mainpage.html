@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="options">
+      <a href="{{ url_for('korean_page') }}">
+        <img src="/image/korean.jpg" alt="Korean Cuisine">
+        <span>한식</span>
+      </a>
+      <a href="{{ url_for('japanese_page')}}">
+        <img src="/image/japanese.jpg" alt="Japanese Cuisine">
+        <span>일식</span>
+      </a>
+      <a href="{{ url_for('western_page')}}">
+        <img src="/image/western.jpg" alt="Western Cuisine">
+        <span>양식</span>
+      </a>
+      <a href="{{ url_for('chinese_page')}}">
+        <img src="/image/chinese.jpg" alt="Chinese Cuisine">
+        <span>중식</span>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
