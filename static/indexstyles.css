@@ -1,0 +1,40 @@
+h1{
+    font-family: 'Luckiest Guy', serif;;
+    text-align: center;
+    font-size: 5rem;
+    margin-bottom: 1px;
+    /*font-weight: bold;*/
+
+}
+
+h3{
+    margin-top: 1px;
+    margin-bottom: 49px;
+    text-align: center;
+    font-size: 1rem;
+    /*font-weight: bold;*/
+}
+
+.GoToMainPage a {
+    display: block;
+    padding: 10px 20px;
+    margin: 5px 0;
+    background-color: #f9f9f9;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  .Login a {
+    display: block;
+    padding: 10px 20px;
+    margin: 5px 0;
+    background-color: #f9f9f9;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }

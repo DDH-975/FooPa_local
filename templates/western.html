@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>양식</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='foodSelectStyles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2 class="title">양식</h2>
+    <div class="food-list">
+      <a href="{{ url_for('recipe_page')}}">피자</a>
+      <a href="{{ url_for('recipe_page')}}">버거</a>
+      <a href="{{ url_for('recipe_page')}}">파스타</a>
+      <a href="{{ url_for('recipe_page')}}">스테이크</a>
+      <a href="{{ url_for('recipe_page')}}">샌드위치</a>
+      <a href="{{ url_for('recipe_page')}}">샐러드</a>
+      <a href="{{ url_for('recipe_page')}}">치킨</a>
+      <a href="{{ url_for('recipe_page')}}">피쉬 앤 칩스</a>
+      <a href="{{ url_for('recipe_page')}}">수프</a>
+      <a href="{{ url_for('recipe_page')}}">랍스타</a>
+    </div>
+    <button class="back-button" onclick="goBack()">뒤로 가기</button>
+    <script src="{{ url_for('static', filename='foodSelectScript.js') }}"></script>
+</body>
+</html>
