@@ -3,28 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>모바일 채팅 페이지</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='gpt.css') }}">
+    <title>GPT Response</title>
 </head>
 <body>
-    <div class="chat-container">
-        <div class="chat-header">
-            <span class="back-button" onclick="history.back()">◁</span>
-            레시피
-            <span class="basket" onclick="location.href='{{ url_for('basket_page') }}'">장바구니</span>
-        </div>
-        <div class="chat-messages" id="chat-messages">
-            <div class="message">
-                <span class="user">GPT:</span>
-                <span class="text">안녕하세요!</span>
-            </div>
-        </div>
-        <div class="chat-input">
-            <input type="text" id="message-input" placeholder="메시지 입력...">
-            <button onclick="sendMessage()">전송</button>
-        </div>
+    <div>
+        <h1>GPT Response:</h1>
+        <p>{{ result }}</p>
     </div>
-
-    <script src="{{ url_for('static', filename='gpt.js') }}"></script>
 </body>
 </html>
