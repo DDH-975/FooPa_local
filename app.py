@@ -6,31 +6,31 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/mainpage')
-def main_page():
-    return render_template('mainpage.html')
+@app.route('/category')
+def category_page():
+    return render_template('category.html')
 
-@app.route('/mainpage/korean')
+@app.route('/category/korean')
 def korean_page():
     return render_template('korean.html')
 
-@app.route('/mainpage/chinese')
+@app.route('/category/chinese')
 def chinese_page():
     return render_template('chinese.html')
 
-@app.route('/mainpage/western')
+@app.route('/category/western')
 def western_page():
     return render_template('western.html')
 
-@app.route('/mainpage/japanese')
+@app.route('/category/japanese')
 def japanese_page():
     return render_template('japanese.html')
 
-@app.route('/mainpage/recipe')
-def recipe_page():
-    return render_template('recipe.html')
+@app.route('/category/gpt')
+def gpt_page():
+    return render_template('gpt.html')
 
-@app.route('/mainpage/basket')
+@app.route('/category/basket')
 def basket_page():
     return render_template('basket.html')
 
