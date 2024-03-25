@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>장바구니</title>
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href=" {{ url_for('static', filename='basketStyles.css') }}">
 </head>
 <body>
     <div class="container">
@@ -26,6 +26,6 @@
         <button class="goBack" onclick="history.back()">뒤로 가기</button>
     </div>
 
-    <script src="script.js"></script>
+    <script src="{{ url_for('static', filename='basketScript.js') }}"></script>
 </body>
 </html>

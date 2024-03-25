@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>양식</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='foodSelectStyles.css') }}">
 </head>
 <body>
   <div class="container">
@@ -22,6 +22,6 @@
       <a href="{{ url_for('recipe_page')}}">랍스타</a>
     </div>
     <button class="back-button" onclick="goBack()">뒤로 가기</button>
-    <script src="script.js"></script>
+    <script src="{{ url_for('static', filename='foodSelectScript.js') }}"></script>
 </body>
 </html>
