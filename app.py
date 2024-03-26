@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for, redirect, session
 from flask import request, jsonify
-from flask_cors import CORS
-#from dotenv import load_dotenv
+#from flask_cors import CORS
+from dotenv import load_dotenv
 import openai
 import os
 import requests
@@ -11,7 +11,7 @@ from flask_jwt_extended import (
     get_jwt_identity, jwt_required,
     set_access_cookies, set_refresh_cookies,
     unset_jwt_cookies, create_refresh_token,
-    jwt_refresh_token_required,
+
 )
 from config import CLIENT_ID, REDIRECT_URI
 from controller import Oauth
@@ -64,7 +64,7 @@ def oauth_api():
     return resp
 
 @app.route('/token/refresh')
-@jwt_refresh_token_required
+@jwt_required(refresh=True)
 def token_refresh_api():
     """
     Refresh Token을 이용한 Access Token 재발급
