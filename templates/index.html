@@ -1,76 +1,38 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
-    <link rel="stylesheet" href=" {{ url_for('static', filename='index.css') }}">
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Literata">
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<title>Flask Kakao OAuth App</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<link rel='stylesheet' type='text/css' media='screen' href='/static/style.css'>
 </head>
 <body>
-    <h1>FooPa</h1>
-    <h3>Food Partner</h3>
-    <div class="Login">
-      <a id="custom-login-btn" href="javascript:loginWithKakao()">
-        <img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="222" />
-    </a>
-  </div>
-    <div class="GoToMainPage">
-        <a href="{{ url_for('category_page') }}">MainPage</a>
-      </div>
+	<div class="Wrapper">
+		<div class="title">Flask Kakao OAuth App</div>
+		<div class="info">Python을 이용한 Kakao OAuth 연동 로그인 예제입니다.</div>
 
-      <script src="script.js"></script>
-      <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-   <script type="text/javascript">
-        // 2. 카카오 초기화
-        Kakao.init('2ca7f47f30c6bbbbfd8bfd16cc2abacb');
-        console.log( Kakao.isInitialized() ); // 초기화 판단여부
+		<div id="kakao" class="kakao_button">
+			<img src="/static/image/kakaolink_btn_small.png" alt="kakao oauth" />
+			<span>카카오 로그인</span>
+		</div>
+		<a href="{{ url_for('category_page') }}">category</a>
 
-        // 3. 데모버전으로 들어가서 카카오로그인 코드를 확인.
-        function loginWithKakao() {
-            Kakao.Auth.login({
-                success: function (authObj) {
-                    console.log(authObj); // access토큰 값
-                    Kakao.Auth.setAccessToken(authObj.access_token); // access토큰값 저장
+		<img id="thumnail" src="" class="thumnail display_none" />
+		<div id="nickname" class="nickname display_none"></div>
 
-                    getInfo();
-                },
-                fail: function (err) {
-                    console.log(err);
-                }
-            });
-        }
+		<div id="logout" class="logout display_none">
+			<span>로그아웃</span>
+		</div>
 
-        // 4. 엑세스 토큰을 발급받고, 아래 함수를 호출시켜서 사용자 정보를 받아옴.
-        function getInfo() {
-            Kakao.API.request({
-                url: '/v2/user/me',
-                success: function (res) {
-                    console.log(res);
-                    // 이메일, 성별, 닉네임, 프로필이미지
-                    var email = res.kakao_account.email;
-                    var gender = res.kakao_account.gender;
-                    var nickname = res.kakao_account.profile.nickname;
-                    var profile_image = res.kakao_account.profile.thumbnail_image_url;
-                    console.log(email, gender, nickname, profile_image);
-                },
-                fail: function (error) {
-                    alert('카카오 로그인에 실패했습니다. 관리자에게 문의하세요.' + JSON.stringify(error));
-                }
-            });
-        }
 
-        // 5. 로그아웃 기능 - 카카오 서버에 접속하는 엑세스 토큰을 만료, 사용자 어플리케이션의 로그아웃은 따로 진행.
-        function kakaoLogout() {
-            if (!Kakao.Auth.getAccessToken()) {
-                alert('Not logged in.');
-                return;
-            }
-            Kakao.Auth.logout(function() {
-                alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
-            });
-        }
-    </script>
+	</div>
+
+
+
+	<div id="loading" class="loading display_none">
+		<div class="loading_circle"></div>
+	</div>
 </body>
+<script src="{{url_for('static', filename='main.js') }}" ></script>
 </html>
