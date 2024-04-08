@@ -2,30 +2,16 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>장바구니</title>
+    <style>
 
-    <link rel="stylesheet" href=" {{ url_for('static', filename='basket.css') }}">
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="product">
-            <div class="info">
-                <h2>재료 1</h2>
-                <input type="checkbox" class="product-checkbox">
-            </div>
-        </div>
-        <div class="product">
-            <div class="info">
-                <h2>재료 2</h2>
-                <input type="checkbox" class="product-checkbox">
-            </div>
-        </div>
+    <h2>재료</h2>
 
-        <button class="checkout-button" onclick="proceedToCheckout()" >쇼퍼 콜 하기</button>
-        <button class="goBack" onclick="history.back()">뒤로 가기</button>
-    </div>
 
-    <script src="{{ url_for('static', filename='basket.js') }}"></script>
 </body>
 </html>

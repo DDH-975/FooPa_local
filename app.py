@@ -4,7 +4,12 @@ from flask import request, jsonify
 from dotenv import load_dotenv
 import openai
 import os
+from urllib.request import Request, urlopen
+from urllib.parse import urlencode, quote_plus, unquote
+import xmltodict
+import json
 import requests
+
 from flask import Flask, render_template, request, jsonify, make_response
 from flask_jwt_extended import (
     JWTManager, create_access_token,
@@ -15,7 +20,7 @@ from flask_jwt_extended import (
 )
 from config import CLIENT_ID, REDIRECT_URI
 from controller import Oauth
-from model import UserModel, UserData
+from model import UserData, UserModel
 
 
 app = Flask(__name__)
@@ -99,7 +104,7 @@ def oauth_url_api():
     )
 
 @app.route("/userinfo")
-@jwt_required
+@jwt_required()
 def userinfo():
     """
     Access Token을 이용한 DB에 저장된 사용자 정보 가져오기
@@ -107,6 +112,7 @@ def userinfo():
     user_id = get_jwt_identity()
     userinfo = UserModel().get_user(user_id).serialize()
     return jsonify(userinfo)
+
 
 
 @app.route("/oauth/refresh", methods=['POST'])
@@ -133,30 +139,28 @@ def oauth_userinfo_api():
     result = Oauth().userinfo("Bearer " + access_token)
     return jsonify(result)
 
-@app.route('/category')
-def category_page():
-    return render_template('category.html')
 
-@app.route('/category/korean')
-def korean_page():
-    return render_template('korean.html')
+# 삭제 될 코드
+# @app.route('/category')
+# def category_page():
+#     return render_template('cate.html')
+#
+# @app.route('/category/korean')
+# def korean_page():
+#     return render_template('korean.html')
+#
+# @app.route('/category/chinese')
+# def chinese_page():
+#     return render_template('chinese.html')
+#
+# @app.route('/category/western')
+# def western_page():
+#     return render_template('western.html')
+#
+# @app.route('/category/japanese')
+# def japanese_page():
+#     return render_template('japanese.html')
 
-@app.route('/category/chinese')
-def chinese_page():
-    return render_template('chinese.html')
-
-@app.route('/category/western')
-def western_page():
-    return render_template('western.html')
-
-@app.route('/category/japanese')
-def japanese_page():
-    return render_template('japanese.html')
-
-
-@app.route('/category/basket')
-def basket_page():
-    return render_template('basket.html')
 
 dish = "제육볶음"
 @app.route('/gpt', methods =['GET','POST'])
@@ -174,6 +178,87 @@ def chatGPT():
     )
     result = completion.choices[0].message.content
     return render_template('gpt.html', result = result)
+
+
+
+
+# API로부터 레시피 데이터 가져오기
+def get_recipes():
+    key = "fc0d6fc8e41441019501"
+    url = f"http://openapi.foodsafetykorea.go.kr/api/{key}/COOKRCP01/xml/1/50"
+
+    response = requests.get(url)
+    content = response.content
+
+
+    data_dict = xmltodict.parse(content)
+
+
+    recipes = data_dict['COOKRCP01']['row']
+
+    return recipes
+
+def filter_recipes(category):
+    recipes = get_recipes()
+    filtered_recipes = []
+
+    for recipe in recipes:
+        if 'RCP_PAT2' in recipe and category in recipe['RCP_PAT2']:
+            filtered_recipes.append(recipe)
+
+    return filtered_recipes
+
+
+
+@app.route('/category')
+def category():
+    return render_template('category.html')
+
+
+# 밥 카테고리
+@app.route('/rice')
+def rice():
+    recipes = filter_recipes('밥')
+    return render_template('recipes.html', recipes=recipes)
+
+# 반찬 카테고리
+@app.route('/side_dish')
+def side_dish():
+    recipes = filter_recipes('반찬')
+    return render_template('recipes.html', recipes=recipes)
+
+# 국&찌개 카테고리
+@app.route('/soup')
+def soup():
+    recipes = filter_recipes('국&찌개')
+    return render_template('recipes.html', recipes=recipes)
+
+# 후식 카테고리
+@app.route('/dessert')
+def dessert():
+    recipes = filter_recipes('후식')
+    return render_template('recipes.html', recipes=recipes)
+
+# 일품 카테고리
+@app.route('/high_end_food')
+def high_end_food():
+    recipes = filter_recipes('일품')
+    return render_template('recipes.html', recipes=recipes)
+
+# 레시피 상세정보
+@app.route('/recipes/<int:recipe_id>')
+def recipe_detail(recipe_id):
+    recipes = get_recipes()
+    for recipe in recipes:
+        if int(recipe['@id']) == recipe_id:
+            return render_template('recipe_detail.html', recipe=recipe)
+    return "Recipe not found."
+
+
+@app.route('/category/recipe_detail/basket')
+def basket():
+    return render_template('basket.html')
+    # 요리 재료만 파싱
 
 if __name__ == '__main__':
     app.run(debug=True)

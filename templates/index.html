@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 	<meta charset='utf-8'>
 	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -9,14 +9,14 @@
 </head>
 <body>
 	<div class="Wrapper">
-		<div class="title">Flask Kakao OAuth App</div>
-		<div class="info">Python을 이용한 Kakao OAuth 연동 로그인 예제입니다.</div>
+		<div class="title">FooPa</div>
+		<div class="info">FoodPartner</div>
 
 		<div id="kakao" class="kakao_button">
 			<img src="/static/image/kakaolink_btn_small.png" alt="kakao oauth" />
 			<span>카카오 로그인</span>
 		</div>
-		<a href="{{ url_for('category_page') }}">category</a>
+		<a class="category" href="{{ url_for('category') }}">category</a>
 
 		<img id="thumnail" src="" class="thumnail display_none" />
 		<div id="nickname" class="nickname display_none"></div>
@@ -24,11 +24,7 @@
 		<div id="logout" class="logout display_none">
 			<span>로그아웃</span>
 		</div>
-
-
 	</div>
-
-
 
 	<div id="loading" class="loading display_none">
 		<div class="loading_circle"></div>

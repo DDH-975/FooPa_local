@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ recipe['RCP_NM'] }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            font-family: 'Kakao', -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", sans-serif;
+            font-weight: bold;
+            margin: 0 0 10px;
+            color: #333;
+        }
+        p {
+            font-weight: bold;
+            margin: 0 0 20px;
+            color: #666;
+        }
+        ol {
+            padding-left: 20px;
+            margin: 0 0 20px;
+        }
+
+        .recipe-index {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .recipe-step {
+            margin-left: 20px;
+        }
+        .recipe-image {
+            max-width: 100%;
+            margin-top: 50px;
+        }
+
+        .basket_button {
+            font-size: 25px;
+            display: block;
+            padding: 10px 10px;
+            margin: 5px 0;
+            background-color: #f9f9f9;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .basket_button:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ recipe['RCP_NM'] }}</h1>
+        <h2>재료</h2>
+        <p>{{ recipe['RCP_PARTS_DTLS'] }}</p>
+        <h2>레시피</h2>
+        <div>
+           --> {% for i in range(1, 7) %}
+                {% set manual_key = 'MANUAL{:02d}'.format(i) %}
+                {% set image_key = 'MANUAL_IMG{:02d}'.format(i) %}
+                {% if manual_key in recipe %}
+                    <div class="recipe-index">{{ recipe[manual_key] }}</div>
+                {% endif %}
+                {% if image_key in recipe %}
+                    <div class="recipe-step">
+                        <img src="{{ recipe[image_key] }}" alt="Step Image" class="recipe-image">
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div >
+            <li><a href="/category/recipe_detail/basket">basket</a></li>
+        </div>
+    </div>
+</body>
+</html>

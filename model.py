@@ -1,8 +1,5 @@
 from tinydb import TinyDB, Query
-
-
 class UserModel:
-
     def __init__(self, path='db.json'):
         self.db = TinyDB(path)
 
@@ -19,7 +16,6 @@ class UserModel:
 
 
 class UserData:
-
     def __init__(self, user=None):
         if user:
             user_info = user['kakao_account']['profile']
@@ -53,3 +49,14 @@ class UserData:
         user.profile = user_data['profile']
         user.thumbnail = user_data['thumbnail']
         return user
+
+
+    # 데이터베이스 파일 열기
+    db = TinyDB('db.json')
+
+    # 모든 데이터 가져오기
+    all_data = db.all()
+
+    # 데이터 출력
+    for data in all_data:
+        print(data)
