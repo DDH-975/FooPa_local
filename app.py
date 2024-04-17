@@ -36,7 +36,6 @@ jwt = JWTManager(app)
 def index():
     return render_template('index.html')
 
-
 @app.route("/oauth")
 def oauth_api():
     """
@@ -91,8 +90,6 @@ def token_remove_api():
     resp.delete_cookie('logined')
     return resp
 
-
-
 @app.route('/oauth/url')
 def oauth_url_api():
     """
@@ -140,27 +137,6 @@ def oauth_userinfo_api():
     return jsonify(result)
 
 
-# 삭제 될 코드
-# @app.route('/category')
-# def category_page():
-#     return render_template('cate.html')
-#
-# @app.route('/category/korean')
-# def korean_page():
-#     return render_template('korean.html')
-#
-# @app.route('/category/chinese')
-# def chinese_page():
-#     return render_template('chinese.html')
-#
-# @app.route('/category/western')
-# def western_page():
-#     return render_template('western.html')
-#
-# @app.route('/category/japanese')
-# def japanese_page():
-#     return render_template('japanese.html')
-
 
 dish = "제육볶음"
 @app.route('/gpt', methods =['GET','POST'])
@@ -185,19 +161,16 @@ def chatGPT():
 # API로부터 레시피 데이터 가져오기
 def get_recipes():
     key = "fc0d6fc8e41441019501"
-    url = f"http://openapi.foodsafetykorea.go.kr/api/{key}/COOKRCP01/xml/1/50"
-
+    url = f"http://openapi.foodsafetykorea.go.kr/api/{key}/COOKRCP01/xml/1/999"
     response = requests.get(url)
     content = response.content
 
-
     data_dict = xmltodict.parse(content)
 
-
     recipes = data_dict['COOKRCP01']['row']
-
     return recipes
 
+# 데이터 필터링
 def filter_recipes(category):
     recipes = get_recipes()
     filtered_recipes = []
@@ -205,11 +178,10 @@ def filter_recipes(category):
     for recipe in recipes:
         if 'RCP_PAT2' in recipe and category in recipe['RCP_PAT2']:
             filtered_recipes.append(recipe)
-
     return filtered_recipes
 
 
-
+#카테고리 페이지
 @app.route('/category')
 def category():
     return render_template('category.html')
@@ -221,11 +193,13 @@ def rice():
     recipes = filter_recipes('밥')
     return render_template('recipes.html', recipes=recipes)
 
+
 # 반찬 카테고리
 @app.route('/side_dish')
 def side_dish():
     recipes = filter_recipes('반찬')
     return render_template('recipes.html', recipes=recipes)
+
 
 # 국&찌개 카테고리
 @app.route('/soup')
@@ -233,17 +207,20 @@ def soup():
     recipes = filter_recipes('국&찌개')
     return render_template('recipes.html', recipes=recipes)
 
+
 # 후식 카테고리
 @app.route('/dessert')
 def dessert():
     recipes = filter_recipes('후식')
     return render_template('recipes.html', recipes=recipes)
 
-# 일품 카테고리
+
+# 일품 요리 카테고리
 @app.route('/high_end_food')
 def high_end_food():
     recipes = filter_recipes('일품')
     return render_template('recipes.html', recipes=recipes)
+
 
 # 레시피 상세정보
 @app.route('/recipes/<int:recipe_id>')
@@ -255,10 +232,32 @@ def recipe_detail(recipe_id):
     return "Recipe not found."
 
 
-@app.route('/category/recipe_detail/basket')
-def basket():
-    return render_template('basket.html')
-    # 요리 재료만 파싱
+#을식 검색
+@app.route('/search')
+def search():
+    query = request.args.get('query')
+    filtered_recipes = filter_recipes_by_query(query)
+    return render_template('recipes.html', recipes=filtered_recipes)
+def filter_recipes_by_query(query):
+    recipes = get_recipes()
+    filtered_recipes = [recipe for recipe in recipes if query.lower() in recipe['RCP_NM'].lower()]
+    return filtered_recipes
+
+
+#장바구니 페이지 (재료 파싱)
+@app.route('/basket/<int:recipe_id>')
+def basket(recipe_id):
+    recipes = get_recipes()
+    for recipe in recipes:
+        if int(recipe['@id']) == recipe_id:
+            if 'RCP_PARTS_DTLS' in recipe:
+                ingredients = recipe['RCP_PARTS_DTLS'].split(',')  # 쉼표로 재료 구분
+                ingredients = [ingredient.strip() for ingredient in ingredients]  # 공백 제거
+                return render_template('basket.html', ingredients=ingredients)
+            else:
+                return "Ingredients not found."
+    return "Recipe not found."
+
 
 if __name__ == '__main__':
     app.run(debug=True)

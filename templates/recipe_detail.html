@@ -43,8 +43,9 @@
             margin-left: 20px;
         }
         .recipe-image {
-            max-width: 100%;
-            margin-top: 50px;
+            width: 250px;
+            margin-top: 1px;
+            margin-bottom: 40px;
         }
 
         .basket_button {
@@ -63,31 +64,35 @@
         .basket_button:hover {
             background-color: #e0e0e0;
         }
+
+
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>{{ recipe['RCP_NM'] }}</h1>
-        <h2>재료</h2>
-        <p>{{ recipe['RCP_PARTS_DTLS'] }}</p>
-        <h2>레시피</h2>
-        <div>
-           --> {% for i in range(1, 7) %}
-                {% set manual_key = 'MANUAL{:02d}'.format(i) %}
-                {% set image_key = 'MANUAL_IMG{:02d}'.format(i) %}
-                {% if manual_key in recipe %}
-                    <div class="recipe-index">{{ recipe[manual_key] }}</div>
-                {% endif %}
-                {% if image_key in recipe %}
-                    <div class="recipe-step">
-                        <img src="{{ recipe[image_key] }}" alt="Step Image" class="recipe-image">
-                    </div>
-                {% endif %}
-            {% endfor %}
+      <div class="container">
+            <div class="container">
+            <h1>{{ recipe['RCP_NM'] }}</h1>
+            <h2>재료</h2>
+            <p>{{ recipe['RCP_PARTS_DTLS'] }}</p>
+            <h2>레시피</h2>
+            <div >
+               {% for i in range(1, 7) %}
+                    {% set manual_key = 'MANUAL{:02d}'.format(i) %}
+                    {% set image_key = 'MANUAL_IMG{:02d}'.format(i) %}
+                    {% if recipe[manual_key] is not none %}
+                        <div class="recipe-index">{{ recipe[manual_key] }}</div>
+                    {% endif %}
+                    {% if recipe[image_key] is not none %}
+                        <div class="recipe-step">
+                            <img src="{{ recipe[image_key] }}" alt="Step Image" class="recipe-image">
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% if recipe['RCP_NM'] is not none %}
+                <a href="/basket/{{ recipe['@id'] }}" class="basket_button">장바구니</a>
+            {% endif %}
         </div>
-        <div >
-            <li><a href="/category/recipe_detail/basket">basket</a></li>
-        </div>
-    </div>
+      </div>
 </body>
 </html>

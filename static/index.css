@@ -99,6 +99,7 @@ body {
   height: 28px;
 }
 .kakao_button > span {
+  font-weight: bold;
   margin-left: 6px;
   line-height: 32px;
 }
