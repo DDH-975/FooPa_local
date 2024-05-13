@@ -9,7 +9,6 @@ from urllib.parse import urlencode, quote_plus, unquote
 import xmltodict
 import json
 import requests
-
 from flask import Flask, render_template, request, jsonify, make_response
 from flask_jwt_extended import (
     JWTManager, create_access_token,
@@ -186,6 +185,13 @@ def filter_recipes(category):
 def category():
     return render_template('category.html')
 
+@app.route('/address')
+def address():
+    return render_template('address.html')
+
+
+
+
 
 # 밥 카테고리
 @app.route('/rice')
@@ -257,6 +263,21 @@ def basket(recipe_id):
             else:
                 return "Ingredients not found."
     return "Recipe not found."
+
+
+@app.route('/send-ingredients', methods=['POST'])
+def send_ingredients():
+    selected_ingredients = request.form.getlist('ingredients')
+
+    data = {'ingredients': selected_ingredients}
+    shopper_app_url = 'http://127.0.0.1:5001/receive-ingredients'
+
+    response = requests.post(shopper_app_url, json=data)
+
+    if response.status_code == 200:
+        return "재료를 쇼퍼 앱으로 성공적으로 전송했습니다."
+    else:
+        return '재료 전송에 실패했습니다.', 500
 
 
 if __name__ == '__main__':

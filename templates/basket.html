@@ -54,14 +54,14 @@
 <body>
     <div class="container">
         <h1 style="text-align: center;">재료</h1>
-        <div>
-            {% for i in ingredients %}
-                <p class="ingredient-item"><input type="checkbox" >{{ i }}</p>
-            {% endfor %}
-        </div>
-        <footer>
-            <div><a class="call_button" href="#">Shopper Call</a></div>
-        </footer>
+        <form id="ingredientForm" action="/send-ingredients" method="POST">
+    {% for i in ingredients %}
+        <p class="ingredient-item">
+            <input type="checkbox" name="ingredients" value="{{ i }}">{{ i }}
+        </p>
+    {% endfor %}
+    <button type="submit">전송</button>
+</form>
     </div>
 </body>
 </html>

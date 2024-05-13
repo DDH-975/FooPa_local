@@ -18,11 +18,11 @@ class UserModel:
 class UserData:
     def __init__(self, user=None):
         if user:
-            user_info = user['kakao_account']['profile']
+            #user_info = user['kakao_account']['profile']
             self.id = user['id']
-            self.nickname = user_info['nickname']
-            self.profile = user_info['profile_image_url']
-            self.thumbnail = user_info['thumbnail_image_url']
+            self.nickname = user['nickname']
+            #self.profile = user_info['profile_image_url']
+            #self.thumbnail = user_info['thumbnail_image_url']
         else:
             self.id = None
             self.nickname = None
@@ -37,8 +37,8 @@ class UserData:
         return {
             "id": self.id,
             "nickname": self.nickname,
-            "profile": self.profile,
-            "thumbnail": self.thumbnail
+            #"profile": self.profile,
+            #"thumbnail": self.thumbnail
         }
 
     @staticmethod
@@ -46,8 +46,8 @@ class UserData:
         user = UserData()
         user.id = user_data['id']
         user.nickname = user_data['nickname']
-        user.profile = user_data['profile']
-        user.thumbnail = user_data['thumbnail']
+        #user.profile = user_data['profile']
+        #user.thumbnail = user_data['thumbnail']
         return user
 
 
