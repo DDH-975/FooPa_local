@@ -38,7 +38,7 @@
      }
 
 </script>
-<form name=form method=post action=$PHP_SELF>
+<form name=form method=post action="/send-in-address">
                                           시/도:
                    <select name='city' onchange="change(this.selectedIndex);"  class=input >
                        <option value='전체'>전체</option>
@@ -63,6 +63,7 @@
                     <select name='county'  class=select>
                        <option value=''>전체</option>
                     </select>
+    <input name='detail_address' type="text">
     <button type="submit">전송</button>
 </form>
 
