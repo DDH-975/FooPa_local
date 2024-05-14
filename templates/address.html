@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLUEB</title>
+    <title>Address</title>
+    <link rel='stylesheet'  href='/static/address.css'>
+</head>
 <body>
-<script language='javascript'>
+<script>
 
      var cnt = new Array();
      cnt[0] = new Array('전체');
@@ -38,9 +40,12 @@
      }
 
 </script>
-<form name=form method=post action="/send-in-address">
-                                          시/도:
-                   <select name='city' onchange="change(this.selectedIndex);"  class=input >
+
+<div class="container">
+    <h2>주소 입력</h2>
+    <form name="form" method="post" action="/send-in-address">
+        <label for="city">시/도:</label>
+        <select id="city" name="city" onchange="change(this.selectedIndex);">
                        <option value='전체'>전체</option>
                        <option value='서울'>서울특별시</option>
                        <option value='부산'>부산광역시</option>
@@ -59,13 +64,15 @@
                        <option value='경남'>경상남도</option>
                        <option value='제주'>제주도</option>
                     </select>
-                                                  구/군:
-                    <select name='county'  class=select>
-                       <option value=''>전체</option>
-                    </select>
-    <input name='detail_address' type="text">
-    <button type="submit">전송</button>
-</form>
 
+        <label for="county">구/군:</label>
+        <select id="county" name="county"></select>
+
+        <label for="detail_address">상세 주소:</label>
+        <input id="detail_address" name="detail_address" type="text">
+
+        <button type="submit">입력완료</button>
+    </form>
+</div>
 </body>
 </html>

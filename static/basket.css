@@ -1,0 +1,43 @@
+body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .ingredient-item {
+            font-size: 20px;
+            display: block;
+            padding: 10px 20px;
+            margin: 5px 0;
+            background-color: #f9f9f9;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .call_button{
+            text-align: center;
+            font-size: 25px;
+            display: block;
+            padding: 10px 10px;
+            margin: 5px 0;
+            background-color: #f9f9f9;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .call_button:hover {
+            background-color: #e0e0e0;
+        }

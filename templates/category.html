@@ -5,64 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 0;
-          }
-
-          .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-          }
-        h1 {
-            font-weight: bold;
-            margin-top: 0;
-            margin-bottom: 20px;
-            font-size: 36px;
-            color: #333;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            margin-bottom: 10px;
-        }
-        a {
-            font-size:20px ;
-            display: block;
-            padding: 10px 20px;
-            margin: 5px 0;
-            background-color: #f9f9f9;
-            color: #333;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        a:hover {
-            background-color: #e0e0e0;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/category.css">
 </head>
 <body>
     <div class="container">
-        <h1>Categories</h1>
-        <ul>
-            <li><a href="/rice">밥</a></li>
-            <li><a href="/side_dish">반찬</a></li>
-            <li><a href="/soup">국 & 찌개</a></li>
-            <li><a href="/high_end_food">일품요리</a></li>
-            <li><a href="/dessert">후식</a></li>
-            <li><a class="chatGPT" href="{{ url_for('chatGPT') }}">Chat GPT</a></li>
-        </ul>
-    </div>
+        <div class="options">
+          <a href="/rice">
+            <img src="/static/image/rice.png" alt="rice">
+            <span>밥</span>
+          </a>
+          <a href="/side_dish">
+            <img src="/static/image/side_dish.png" alt="side_dish">
+            <span>반찬</span>
+          </a>
+          <a href="/soup">
+            <img src="/static/image/soup.png" alt="soup">
+            <span>국 & 찌개</span>
+          </a>
+          <a href="/high_end_food">
+            <img src="/static/image/high_end_food.png" alt="high_end_food">
+            <span>고급요리</span>
+          </a>
+           <a href="/dessert">
+            <img src="/static/image/dessert.png" alt="dessert">
+            <span>후식</span>
+          </a>
+
+        </div>
+      </div>
 </body>
 </html>

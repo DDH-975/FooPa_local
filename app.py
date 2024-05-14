@@ -183,9 +183,6 @@ def address():
     return render_template('address.html')
 
 
-
-
-
 # 밥 카테고리
 @app.route('/rice')
 def rice():
@@ -257,6 +254,8 @@ def basket(recipe_id):
                 return "Ingredients not found."
     return "Recipe not found."
 
+
+#주소 쇼퍼앱으로 전송
 @app.route('/send-in-address', methods=['GET','POST'])
 def send_in_address():
     selectd_city = request.form['city']
@@ -267,12 +266,14 @@ def send_in_address():
     response = requests.post(shopper_app_url, json=data)
     db = TinyDB('db.json')
     db.insert(data)
+
     if response.status_code == 200:
         return render_template('index.html')
     else:
         return '오류', 500
 
 
+#재료 쇼퍼앱으로 전송
 @app.route('/send-ingredients', methods=['POST'])
 def send_ingredients():
     selected_ingredients = request.form.getlist('ingredients')
@@ -280,26 +281,12 @@ def send_ingredients():
     data = {'ingredients': selected_ingredients}
     shopper_app_url = 'http://127.0.0.1:5001/receive-ingredients'
     db.insert(data)
-
     response = requests.post(shopper_app_url, json=data)
 
     if response.status_code == 200:
-        return "재료를 쇼퍼 앱으로 성공적으로 전송했습니다."
+        return render_template('waiting_page.html')
     else:
         return '재료 전송에 실패했습니다.', 500
-
-
-# @app.route('/send-out-address', methods=['POST'])
-# def send_out_address():
-#     db = TinyDB('db.json')
-#     address = db.get(doc_id=2)
-#     shopper_app_url = 'http://127.0.0.1:5001/receive-address'
-#     response = requests.post(shopper_app_url, json=address)
-#
-#     if response.status_code == 200:
-#         return "주소를 쇼퍼 앱으로 성공적으로 전송했습니다."
-#     else:
-#         return '주소 전송에 실패했습니다.', 500
 
 
 if __name__ == '__main__':
