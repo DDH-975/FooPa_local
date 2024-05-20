@@ -1,5 +1,4 @@
-from tinydb import TinyDB, Query
-import openai
+from tinydb import table,TinyDB
 import xmltodict
 import requests
 from flask import Flask, render_template, request, jsonify, make_response
@@ -130,22 +129,24 @@ def oauth_userinfo_api():
 
 
 
-dish = "제육볶음"
-@app.route('/gpt', methods =['GET','POST'])
-def chatGPT():
-    # set api key
-    #openai.api_key = os.environ.get("FLASK_API_KEY")
-    openai.api_key = ""
-    # Call the chat GPT API
-    completion = openai.chat.completions.create(
-        model="gpt-4",
-        messages=[
-        {"role": "system", "content": "You are a competent cook who knows Korean, Chinese, Western, and Japanese"},
-        {"role": "user", "content": f"${dish}의 재료와 요리 방법을 알려줘" }
-        ],
-    )
-    result = completion.choices[0].message.content
-    return render_template('gpt.html', result = result)
+
+# @app.route('/gpt', methods =['GET','POST'])
+# def chatGPT():
+#     db = TinyDB('C:/Users/user5/Desktop/db.json')
+#     price_time_db = db.get(doc_id=6)
+#     # set api key
+#     #openai.api_key = os.environ.get("FLASK_API_KEY")
+#     openai.api_key = ""
+#     # Call the chat GPT API
+#     completion = openai.chat.completions.create(
+#         model="gpt-4",
+#         messages=[
+#         {"role": "system", "content": "You are a competent cook who knows Korean, Chinese, Western, and Japanese"},
+#         {"role": "user", "content": f"${}의 재료와 요리 방법을 알려줘" }
+#         ],
+#     )
+#     result = completion.choices[0].message.content
+#     return render_template('gpt.html', result = result)
 
 
 
@@ -255,38 +256,58 @@ def basket(recipe_id):
     return "Recipe not found."
 
 
-#주소 쇼퍼앱으로 전송
+#사용자 주소 DB 저장
 @app.route('/send-in-address', methods=['GET','POST'])
 def send_in_address():
-    selectd_city = request.form['city']
-    selectd_county = request.form['county']
+    selected_city = request.form['city']
+    selected_county = request.form['county']
     detail_address = request.form['detail_address']
-    data = {'city': selectd_city, 'county': selectd_county,'detail_address': detail_address}
-    shopper_app_url = 'http://127.0.0.1:5001/receive-address'
-    response = requests.post(shopper_app_url, json=data)
-    db = TinyDB('db.json')
-    db.insert(data)
-
-    if response.status_code == 200:
-        return render_template('index.html')
-    else:
-        return '오류', 500
+    data = {'city': selected_city, 'county': selected_county,'detail_address': detail_address}
+    db = TinyDB('C:/Users/user5/Desktop/db.json')
+    db.upsert(table.Document(data,doc_id=2))
+    return render_template('index.html')
 
 
-#재료 쇼퍼앱으로 전송
-@app.route('/send-ingredients', methods=['POST'])
+#메인->쇼퍼, DB저장 : 재료
+@app.route('/send-ingredients', methods=['GET','POST'])
 def send_ingredients():
     selected_ingredients = request.form.getlist('ingredients')
-    db = TinyDB('db.json')
+    db = TinyDB('C:/Users/user5/Desktop/db.json')
     data = {'ingredients': selected_ingredients}
-    shopper_app_url = 'http://127.0.0.1:5001/receive-ingredients'
-    db.insert(data)
-    response = requests.post(shopper_app_url, json=data)
+    db.upsert(table.Document(data, doc_id=3))
+    return render_template('index.html')
 
-    if response.status_code == 200:
-        return render_template('waiting_page.html')
-    else:
-        return '재료 전송에 실패했습니다.', 500
+
+# 가격, 시간, 재료 뿌리기
+@app.route('/select_order')
+def select_order():
+    # 배달 정보를 delivery.html에 전달하여 렌더링
+    db = TinyDB('C:/Users/user5/Desktop/db.json')
+    ingredients_db = db.get(doc_id=3)
+    price_time_db = db.get(doc_id=6)
+    price = price_time_db.get('price')
+    time = price_time_db.get('time')
+    ingredients = ingredients_db.get('ingredients',[])
+    return render_template('select_order.html',ingredients=ingredients,price=price,time=time)
+
+
+@app.route('/payment')
+def payment():
+    db = TinyDB('C:/Users/user5/Desktop/db.json')
+    price_time_db = db.get(doc_id=6)
+    price = price_time_db.get('price')
+    return render_template('payment.html',price=price)
+
+@app.route('/receipt')
+def receipt():
+    # 배달 정보를 delivery.html에 전달하여 렌더링
+    db = TinyDB('C:/Users/user5/Desktop/db.json')
+    ingredients_db = db.get(doc_id=3)
+    price_time_db = db.get(doc_id=6)
+    price = price_time_db.get('price')
+    time = price_time_db.get('time')
+    ingredients = ingredients_db.get('ingredients',[])
+    return render_template('receipt.html',ingredients=ingredients,price=price,time=time)
 
 
 if __name__ == '__main__':

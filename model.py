@@ -1,11 +1,11 @@
-from tinydb import TinyDB, Query
+from tinydb import TinyDB, Query, table
 class UserModel:
-    def __init__(self, path='db.json'):
+    def __init__(self, path='C:/Users/user5/Desktop/db.json'):
         self.db = TinyDB(path)
 
     def upsert_user(self, user):
         if not self.db.search(Query().id == user.id):
-            self.db.insert(user.serialize())
+            self.db.insert(table.Document(user.serialize(),doc_id=1))
 
     def get_user(self, user_id):
         user = self.db.search(Query().id == user_id)
@@ -52,7 +52,7 @@ class UserData:
 
 
     # 데이터베이스 파일 열기
-    db = TinyDB('db.json')
+    db = TinyDB('C:/Users/user5/Desktop/db.json')
 
     # 모든 데이터 가져오기
     all_data = db.all()
