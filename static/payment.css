@@ -1,0 +1,60 @@
+/* 기본 스타일 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 배경색 및 폰트 설정 */
+body {
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* 컨테이너 스타일링 */
+.container {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 80%;
+    max-width: 400px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* 제목 스타일링 */
+h1 {
+    color: #333333;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+/* 가격 스타일링 */
+p {
+    color: #555555;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+/* 링크 버튼 스타일링 */
+a {
+    display: inline-block;
+    background-color: #007bff;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+a:hover {
+    background-color: #0056b3;
+}
