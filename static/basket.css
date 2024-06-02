@@ -1,43 +1,91 @@
 body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
-        .ingredient-item {
-            font-size: 20px;
-            display: block;
-            padding: 10px 20px;
-            margin: 5px 0;
-            background-color: #f9f9f9;
-            color: #333;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        .call_button{
-            text-align: center;
-            font-size: 25px;
-            display: block;
-            padding: 10px 10px;
-            margin: 5px 0;
-            background-color: #f9f9f9;
-            color: #333;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
+.container {
+    width: 90%;
+    max-width: 500px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
 
-        .call_button:hover {
-            background-color: #e0e0e0;
-        }
+.title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #f00;
+    margin-bottom: 20px;
+}
+
+.ingredients-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.ingredient-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 8px;
+    width: calc(33.333% - 10px);
+    box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
+}
+
+.ingredient-item input[type="checkbox"] {
+    display: none;
+}
+
+.ingredient-item.checked {
+    background-color: #ffecec;
+}
+
+.ingredient-item.checked .ingredient-name::after {
+    content: '✔';
+    color: #f00;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.ingredient-name {
+    font-size: 16px;
+    margin-top: 5px;
+    color: #333;
+}
+
+.call_button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.call_button:hover {
+    background-color: #218838;
+}

@@ -9,6 +9,7 @@
 </head>
 <body>
 	<div class="Wrapper">
+		<div class="title_image"><img src="/static/image/foodpa.png" ></div>
 		<div class="title">FooPa</div>
 		<div class="info">FoodPartner</div>
 		<div id="kakao" class="kakao_button">
@@ -28,6 +29,6 @@
 	<div id="loading" class="loading display_none">
 		<div class="loading_circle"></div>
 	</div>
+	<script src="{{ url_for('static', filename='index.js') }}"></script>
 </body>
-<script src="{{url_for('static', filename='index.js') }}" ></script>
 </html>

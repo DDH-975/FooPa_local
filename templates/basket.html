@@ -11,16 +11,21 @@
 
 <body>
     <div class="container">
-        <h1 style="text-align: center;">재료</h1>
+        <h1 class="title">준비 재료</h1>
+        <p class="subtitle">※ 재료 선택 시 체크됨 ※</p>
         <form id="ingredientForm" action="/send-ingredients" method="POST">
-            {% for i in ingredients %}
-            <p class="ingredient-item">
-                <input type="checkbox" name="ingredients" value="{{ i }}">{{ i }}
-            </p>
-            {% endfor %}
+            <div class="ingredients-grid">
+                {% for ingredient in ingredients %}
+                <label class="ingredient-item">
+                    <input type="checkbox" name="ingredients" value="{{ ingredient }}">
+                    <span class="ingredient-name">{{ ingredient }}</span>
+                </label>
+                {% endfor %}
+            </div>
             <button class="call_button" type="submit">쇼퍼 콜</button>
         </form>
     </div>
+    <script src="/static/basket.js"></script>
 </body>
 
 </html>
