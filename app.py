@@ -12,8 +12,6 @@ from config import CLIENT_ID, REDIRECT_URI
 from controller import Oauth
 from model import UserData, UserModel
 
-
-
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = "123"
 app.config['JWT_TOKEN_LOCATION'] = ['cookies']
@@ -141,7 +139,7 @@ def oauth_userinfo_api():
 # API로부터 레시피 데이터 가져오기
 def get_recipes():
     key = "fc0d6fc8e41441019501"
-    url = f"http://openapi.foodsafetykorea.go.kr/api/{key}/COOKRCP01/xml/1/999"
+    url = f"http://openapi.foodsafetykorea.go.kr/api/{key}/COOKRCP01/xml/1/500"
     response = requests.get(url)
     content = response.content
 

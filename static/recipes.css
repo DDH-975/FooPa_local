@@ -1,28 +1,30 @@
 body {
+    font-weight: bold;
     font-family: 'Arial', sans-serif;
-    background-color: #fff;
+    background-color: #f5f5f5;
     margin: 0;
     padding: 0;
     color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 .container {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
 }
 
 h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #000;
-}
-
-.share {
-    text-align: right;
-    font-size: 14px;
-    color: #888;
+    font-size: 28px;
     margin-bottom: 20px;
+    color: #333;
 }
 
 form {
@@ -37,6 +39,7 @@ form input[type="text"] {
     border: 1px solid #ddd;
     border-radius: 5px 0 0 5px;
     flex: 1;
+    outline: none;
 }
 
 form input[type="submit"] {
@@ -47,6 +50,12 @@ form input[type="submit"] {
     border: none;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    outline: none;
+}
+
+form input[type="submit"]:hover {
+    background-color: #e65c50;
 }
 
 ul {
@@ -61,6 +70,12 @@ li {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 a {
@@ -72,18 +87,20 @@ a {
 .recipe-image {
     width: 40%;
     height: auto;
+    object-fit: cover;
 }
 
 .recipe-info {
-    padding: 10px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 .recipe-info h2 {
-    font-size: 18px;
+    font-size: 20px;
     margin: 0;
+    color: #ff6f61;
 }
 
 .recipe-info p {

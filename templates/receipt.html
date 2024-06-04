@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>receipt</title>
+    <title>영수증</title>
     <link rel="stylesheet" href="/static/receipt.css">
 </head>
 <body>
     <div class="container">
         <h1>결제가 완료되었습니다.</h1>
         <h2>주문내역</h2>
-        <br>
         <div class="details">
             <h3>주문한 재료</h3>
             <ul>
@@ -19,8 +18,11 @@
                 <li>{{ ingredient }}</li>
                 {% endfor %}
             </ul>
-            <h3>시간: {{time}}분</h3>
-            <h3>가격: {{price}}원</h3>
+            <h3 class="total">시간: {{ time }}분</h3>
+            <h3 class="total">가격: {{ price }}원</h3>
+        </div>
+        <div class="receipt-footer">
+            감사합니다. 좋은 하루 되세요!
         </div>
     </div>
 </body>

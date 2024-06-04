@@ -1,91 +1,91 @@
 body {
+    font-weight: bold;
     font-family: 'Arial', sans-serif;
-    background-color: #f8f8f8;
+    background: linear-gradient(to right, #ffecd2, #fcb69f);
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .container {
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 600px;
     width: 90%;
-    max-width: 500px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
     text-align: center;
 }
 
 .title {
-    font-size: 24px;
+    font-size: 2em;
     margin-bottom: 10px;
     color: #333;
 }
 
 .subtitle {
-    font-size: 14px;
-    color: #f00;
+    font-size: 1.2em;
+    color: #888;
     margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .ingredients-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 .ingredient-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px 15px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    background-color: #f0f0f0;
-    padding: 10px;
-    border-radius: 8px;
-    width: calc(33.333% - 10px);
-    box-sizing: border-box;
-    position: relative;
-    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ingredient-item:hover {
+    background-color: #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .ingredient-item input[type="checkbox"] {
-    display: none;
-}
-
-.ingredient-item.checked {
-    background-color: #ffecec;
-}
-
-.ingredient-item.checked .ingredient-name::after {
-    content: '✔';
-    color: #f00;
-    position: absolute;
-    top: 5px;
-    right: 5px;
+    margin-right: 10px;
+    transform: scale(1.5);
+    accent-color: #ff6f61;
 }
 
 .ingredient-name {
-    font-size: 16px;
-    margin-top: 5px;
+    font-size: 1.1em;
     color: #333;
 }
 
 .call_button {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
+    background-color: #ff6f61;
+    color: white;
     border: none;
-    font-size: 16px;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 1.2em;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .call_button:hover {
-    background-color: #218838;
+    background-color: #e65c50;
+    transform: translateY(-3px);
 }

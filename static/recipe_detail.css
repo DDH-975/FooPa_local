@@ -1,77 +1,87 @@
 body {
     font-weight: bold;
     font-family: 'Arial', sans-serif;
-    background-color: #f8f8f8;
+    background: linear-gradient(to right, #ece9e6, #ffffff);
     margin: 0;
     padding: 0;
-}
-
-.container {
-    width: 90%;
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1, h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     color: #333;
 }
 
+.container {
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 800px;
+    width: 90%;
+    margin: 20px;
+    text-align: center;
+}
+
 h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333;
 }
 
 h2 {
-    font-size: 20px;
+    font-size: 1.5em;
+    margin-top: 20px;
     margin-bottom: 10px;
+    color: #555;
+    border-bottom: 2px solid #ff6f61;
+    display: inline-block;
+    padding-bottom: 5px;
 }
 
 p {
-    font-size: 16px;
-    margin-bottom: 20px;
+    font-size: 1.2em;
     color: #666;
+    margin-bottom: 20px;
 }
 
 .recipe-steps {
-    display: flex;
-    flex-direction: column;
+    text-align: left;
 }
 
 .recipe-step {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
 }
 
 .step-text {
-    font-size: 16px;
-    color: #333;
     flex: 1;
-    margin-right: 10px;
+    font-size: 1.1em;
+    color: #444;
+    padding-right: 20px;
 }
 
 .step-image img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 5px;
+    max-width: 150px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .basket_button {
     display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: #fff;
+    background-color: #ff6f61;
+    color: white;
     text-decoration: none;
+    padding: 15px 30px;
     border-radius: 5px;
-    text-align: center;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 20px;
 }
 
 .basket_button:hover {
-    background-color: #218838;
+    background-color: #e65c50;
+    transform: translateY(-3px);
 }
