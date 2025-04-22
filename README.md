@@ -1,1 +1,1 @@
-# FooPa
+#Capstone Project: FooPa
