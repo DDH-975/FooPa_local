@@ -79,13 +79,54 @@
 
 ---
 ## 📱 앱 실행 화면
+
 ### 👨‍🍳 사용자 앱
+<table>
+  <tr>
+    <th>로그인</th>
+    <th>카테고리</th>
+    <th>레시피</th>
+  </tr>
+  <tr>
+    <td><img alt ="카카오 로그인" src="https://github.com/user-attachments/assets/7918ef92-c9ac-4523-9856-8c8c92882f4c" width="230"/></td>
+    <td><img alt="카테고리" src="https://github.com/user-attachments/assets/64cae19d-e727-4d7d-8d98-43dff0bfbc9a" width="230"/></td>
+    <td><img alt="레시피" src="https://github.com/user-attachments/assets/a5e62d79-bf1f-4e88-8e0b-355dbf3098b4" width="230"/></td>
+  </tr>
+</table>
 
 <table>
-  <td></td>
+  <tr>
+    <th>장바구니</th>
+    <th>쇼퍼가 제안한 가격 및 예상 배달시간 </th>
+    <th>결제 화면</th>
+    <th>영수증</th>
+  </tr>
+  <tr>
+    <td><img alt="장바구니" src="https://github.com/user-attachments/assets/4cfecb35-9b1f-4c0e-b805-fee2afd1f17b" width="230"/></td>
+    <td><img alt ="제안" src="https://github.com/user-attachments/assets/0c41bcab-ac48-443b-996c-e1f8cdacbd22" width="230"/></td>
+    <td><img alt ="결제" src="https://github.com/user-attachments/assets/8ad6f731-0ebe-4cd0-9f25-8dc1e30a3212" width="230"/></td>
+    <td><img alt ="영수증" src="https://github.com/user-attachments/assets/a3a1e6aa-adcf-4509-9a50-2d21deddf528" width="230"/></td>
+  </tr>
 </table>
-로그인 화면
-<img alt ="카카오 로그인" src="https://github.com/user-attachments/assets/7918ef92-c9ac-4523-9856-8c8c92882f4c"/>
+
+<br>
+
+### 🚚 쇼퍼용 앱
+<table>
+  <tr>
+    <th>로그인</th>
+    <th>가격 및 예상 배달시간 제안</th>
+    <th>주문서</th>
+  </tr>
+  <tr>
+    <td><img alt ="카카오 로그인" src="https://github.com/user-attachments/assets/90b98795-a62d-4086-a1b9-cdba7f660777" width="230"/></td>
+    <td><img alt="가격 및 예상 배달시간 제안" src="https://github.com/user-attachments/assets/4468c298-9d57-4536-a311-b0d06881da79" width="230"/></td>
+    <td><img alt="레시피" src="https://github.com/user-attachments/assets/dae4a9ed-c3c7-4dca-a507-ee42053a6f9a" width="230"/></td>
+  </tr>
+</table>
+
+
+## 사용자 앱, 쇼퍼 앱 흐름
 
 
 
