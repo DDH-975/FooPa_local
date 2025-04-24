@@ -20,7 +20,7 @@
 ## 👨‍💻 팀 정보
 
 - **팀명**: M&S  
-- **팀원**: [공승환](https://github.com/LFC19),  [이정민](https://github.com/doog-jung-min),  정준호,  [최민석](https://github.com/Catower917)  
+- **팀원**: [공승환](https://github.com/LFC19),   [이정민](https://github.com/doog-jung-min),   [정준호](https://github.com/DDH-975),   [최민석](https://github.com/Catower917)  
 - **교과목**: 소프트웨어창의설계2 (캡스톤디자인)  
 
 ---
